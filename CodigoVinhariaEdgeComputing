@@ -1,0 +1,57 @@
+#define LED_VERDE    8
+#define LED_AMARELO  9
+#define LED_VERMELHO 10
+#define BUZZER       7
+int limiteInferior = 500;
+int limiteSuperior = 700;
+int limiteMaximo = 1023;
+int valorLDR = 0;
+void setup() 
+{
+  pinMode(BUZZER, OUTPUT);
+  pinMode(LED_VERDE, OUTPUT);
+  pinMode(LED_AMARELO, OUTPUT);
+  pinMode(LED_VERMELHO, OUTPUT);
+  Serial.begin(9600);
+}
+void loop() 
+{
+  valorLDR = analogRead(A0);
+  if (valorLDR < limiteInferior) 
+  {
+    acaoOK(valorLDR);
+  } 
+  else if (valorLDR >= limiteSuperior) 
+  {
+    acaoProblema(valorLDR);
+  } 
+  else 
+  {
+    acaoAlerta(valorLDR);
+  }
+  delay(1000);
+}
+void acaoOK(int valorLDR) 
+{
+  digitalWrite(LED_VERDE, HIGH);
+  digitalWrite(LED_AMARELO, LOW);
+  digitalWrite(LED_VERMELHO, LOW);
+  tone(BUZZER, 0, 500);
+  Serial.println("OK - LDR: " + String(valorLDR));
+}
+void acaoAlerta(int valorLDR) 
+{
+  digitalWrite(LED_VERDE, LOW);
+  digitalWrite(LED_AMARELO, HIGH);
+  digitalWrite(LED_VERMELHO, LOW);
+  tone(BUZZER, 9, 700);
+  Serial.println("Alerta - LDR: " + String(valorLDR));
+}
+void acaoProblema(int valorLDR) 
+{
+  digitalWrite(LED_VERDE, LOW);
+  digitalWrite(LED_AMARELO, LOW);
+  digitalWrite(LED_VERMELHO, HIGH);
+  tone(BUZZER, 10, 0);
+  Serial.println("Problema - LDR: " + String(valorLDR));
+}
