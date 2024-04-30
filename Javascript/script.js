@@ -7,7 +7,7 @@ function adicionar() {
     var preco = document.getElementById('Preco').value;
     var pessoas = document.getElementById('Pessoas').value;
 
-    let calcularGarrafas = Math.floor(pessoas * 0.2);
+    let calcularGarrafas = Math.floor(pessoas * 0.2 + 1);
     let calcularVinho1 = Math.floor(calcularGarrafas / 0.750);
     let calcularVinho2 = Math.floor(calcularGarrafas / 1.5);
     let calcularPreco1 = Math.floor(calcularVinho1 * 30);
@@ -52,3 +52,4 @@ function caracteristicasvinhos() {
         infoDiv.innerHTML += 'Já com garrafas de 1,5L, você deverá comprar: ' + vinho.calcularVinho2 + ' garrafas, com o valor total de:' + vinho.calcularPreco2 + 'R$' + '<br><br>';
     });
 }
+
