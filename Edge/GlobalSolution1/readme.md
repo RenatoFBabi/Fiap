@@ -1,5 +1,5 @@
 # Leitor de pH da Água com DHT11
-<h1> Leitor de ph <h1/>
+
 ## Sobre o Projeto
 Este projeto visa ajudar comunidades com acesso limitado a água potável a monitorar a qualidade da água utilizando o sensor DHT11. O dispositivo mede o pH da água e indica se a água está segura para uso ou se necessita de tratamento.
 
