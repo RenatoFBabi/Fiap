@@ -15,3 +15,6 @@ O sensor DHT11 é utilizado para ler o nível de pH da água. O dispositivo é c
 ### Pré-requisitos
 - um ESP32, um potenciômetro, vários fios para conectar os componentes, 9 LEDs, uma breadboard, 9 resistores de 470 ohms, e três motores.
 - Wokwi, e o código do projeto
+
+### Código no Wokwi
+https://wokwi.com/projects/399326613843384321
