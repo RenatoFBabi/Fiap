@@ -1,0 +1,54 @@
+// C++ code
+
+int counter = 0;
+const int red = 9;
+const int yellow = 10;
+const int green = 11;
+const int button = 8;
+unsigned long lastTime = 0; // Armazena a última vez que o botão foi pressionado
+int clickRate = 0; // Armazena a taxa de cliques por segundo
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(red, OUTPUT);
+  pinMode(yellow, OUTPUT);
+  pinMode(green, OUTPUT);
+  pinMode(button, INPUT);
+}
+
+void loop() {
+  int reading = digitalRead(button);
+  
+  if (reading == HIGH) {
+    unsigned long currentTime = millis();
+    if (currentTime - lastTime >= 1000) { // Se passou mais de um segundo desde o último clique
+      clickRate = counter; // Atualiza a taxa de cliques por segundo
+      counter = 0; // Reseta o contador para a próxima contagem
+      lastTime = currentTime; // Atualiza o último tempo de clique
+    } else {
+      counter++; // Incrementa o contador se ainda não passou um segundo
+    }
+  }
+  
+  if (clickRate < 3) {
+    digitalWrite(red, HIGH);
+    digitalWrite(yellow, LOW);
+    digitalWrite(green, LOW);
+  } else if (clickRate >= 3 && clickRate <= 6) {
+    digitalWrite(red, LOW);
+    digitalWrite(yellow, HIGH);
+    digitalWrite(green, LOW);
+  } else if (clickRate > 6) {
+    digitalWrite(red, LOW);
+    digitalWrite(yellow, LOW);
+    digitalWrite(green, HIGH);
+  } else {
+    digitalWrite(red, LOW);
+    digitalWrite(yellow, LOW);
+    digitalWrite(green, LOW);
+  }
+  
+  delay(100); // Delay para evitar leitura múltipla do botão
+  
+  Serial.println(clickRate); // Imprime a taxa de cliques por segundo no Serial Monitor
+}
